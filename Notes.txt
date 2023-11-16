@@ -1,0 +1,98 @@
+Get Request:
+import express from 'express'
+const app = express();
+
+const coupons = [{
+    name:"October Offer",
+    code: "XDF-GTY",
+    startDate:12-10-2023,
+    endDate:13-10-2023,
+    offerValue:100,
+    discount:10,
+    status:true,
+
+},
+{
+    name:"December Offer",
+    code: "DHT-SGU",
+    startDate:15-12-2023,
+    endDate:30-12-2023,
+    offerValue:500,
+    discount:50,
+    status:true,
+
+}];
+
+// app.get('/',(req,res)=>{
+//     res.send(`<h1>Welcome to Express<h1>`)
+// })
+
+app.get('/coupons/:id',(req,res)=>{
+    const id = Number(req.params.id)
+        if(id!==NaN && id<coupons.length )
+        {
+           
+            res.send({
+                message:"Data is Fetched successfully",
+                coupons:coupons[id]
+            });
+        }
+        else
+        {
+            res.send({
+                message:"Invalid ID Coupons doesn't exists",
+                
+            });
+        }
+    
+});
+app.listen(8000,()=>console.log("App is listening to port 8000"))
+
+//POST METHOD -create
+app.post("/coupons", (req, res) => {
+  const data = req.body;
+  let filteredData = coupons.filter((e) => e.code === data.code);
+  if (filteredData === 0) {
+    coupons.push(data);
+    res.status(201).send({
+      message: "Coupons created Successfully",
+    });
+  } else {
+    res.status(400).send({
+      message: "Coupon Already exists",
+    });
+  }
+});
+
+
+//QUery Params or search params
+app.get("/coupons/:id", (req, res) => {
+  const id = Number(req.params.id);
+ 
+  if (!isNaN(id) && id >= 0 && id < coupons.length) {  //Here id is checked for NUmber using condition !isNaN(id) ==> id!==NaN
+    res.send({
+      message: "Data is Fetched successfully",
+      coupon: coupons[id],
+    });
+  } else {
+    res.status(404).send({
+      message: "Invalid ID. Coupon doesn't exist",
+    });
+  }
+});
+
+
+
+import express from "express";
+
+const router = express.Router();
+
+router.get("/coupons",CouponsController.getAll)
+router.get("/coupons/:id",)
+router.post("coupons",)
+router.put("/coupons/:id",)
+router.delete("/coupons/:id",)
+
+
+export default router
+
