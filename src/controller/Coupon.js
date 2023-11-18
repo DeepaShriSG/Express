@@ -85,7 +85,7 @@ const getAllCoupons = (req, res) => {
     }
   };
   
-  module.exports = {
+  export default {
     getAllCoupons,
     getCouponsByid,
     createCoupons,

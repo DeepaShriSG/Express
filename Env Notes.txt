@@ -1,1 +1,5 @@
 npm i dotenv for installation
+
+
+npm i bcryptjs for bcrypt installation
+npm i jsonwebtoken

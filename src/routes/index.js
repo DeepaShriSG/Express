@@ -1,13 +1,9 @@
-const express = require('express')
+import express from 'express'
+import CouponsRoutes from './Coupon.js'
+import userRoute from './User.js'
 const router = express.Router()
-
-
-
-const CouponsRoutes = require('./Coupon')
-const userRoute = require('./User')
 
 router.use('/coupons',CouponsRoutes)
 router.use('/user',userRoute)
 
-module.exports = router
-
+export default router
