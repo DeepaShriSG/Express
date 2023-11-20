@@ -3,7 +3,7 @@ import Auth from "../common/auth.js";
 const getUsers = async (req, res) => {
   try {
     let users = await userModel.find();
-    res.status(201).send({
+    res.status(200).send({
       message: "Data is Fetched Successfully",
       users,
     });
@@ -115,7 +115,7 @@ const login = async(req,res)=>{
             role:user.role
             
           })
-          res.status(201).send({
+          res.status(200).send({
             message: "User Logged in successfully",
             token
           });
